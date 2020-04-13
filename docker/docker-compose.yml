@@ -1,0 +1,14 @@
+version: '3.7'
+
+services: 
+    mysql:
+        container_name: booklist-mysql
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./data:/var/lib/mysql
+        environment: 
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}

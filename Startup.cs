@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+// added by me
+using Microsoft.EntityFrameworkCore;
+//using MySql.Data.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
+using BookListRazor.Model;
 
 namespace BookListRazor
 {
@@ -23,7 +28,8 @@ namespace BookListRazor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), mysqloptions => {}) );
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,7 +12,7 @@
         <h2 class="text-info">Book List</h2>
     </div>
     <div class="col-2">
-        <a aps-page="Create"class="btn btn-info form-control text-white">Create New Book</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">Create New Book</a>
     </div>
 
     <div class="col-12 border p-3 mt-3">
@@ -28,6 +28,9 @@
                             @*Html.DisplayNameFor(m => m.Books.FirstOrDefault().Author)*@
                             <label asp-for="Books.FirstOrDefault().Author"></label>
                         </th>
+                        <th>
+                            <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                        </th>
                         <th></th>
                     </tr>
                     
@@ -41,8 +44,11 @@
                                 @Html.DisplayFor(m => item.Author )
                             </td>
                             <td>
+                                @Html.DisplayFor(m => item.ISBN )
+                            </td>
+                            <td>
                                 <button class="btn btn-danger btn-sm">Delete</button>
-                                <a class="btn btn-success btn-sm text-white">Edit</a>
+                                <a asp-page="Edit" asp-route-id="@item.id" class="btn btn-success btn-sm text-white">Edit</a>
                             </td>
                         </tr>
                     }

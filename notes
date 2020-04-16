@@ -1,0 +1,41 @@
+Para agregar paquetes al proyecto
+```
+dotnet add PROJECT_NAME.ccproj || SOLUCTION_NAME package PACKAGE.NAME
+```
+
+Agregar el paquete Microsoft.AspNetCore.Mvc.Razor.RunTimeCompilation
+para poder tener acutalizada la pagina en tiempo de ejecucion
+
+En start Startup.ConfigureService:
+```
+services.AddRazorPages().AddRazorRuntimeCompilation();
+```
+
+Para conectar dotnet con mysql
+```
+dotnet add BookListRazor.csproj package Pomelo.EntityFrameworkCore.MySql
+```
+
+el paquete oficial de mysql no funciona con la version 3.* de entity EntityFrameworkCore
+dotnet ef migrations add MIGRATION_NAME
+
+
+Add razor page
+```
+dotnet new page --name index --output Pages/BookList --namespace BookListRazor.Pages.BookList   
+```
+# Code Generator
+
+Add code generator
+```
+dotnet tool install -g dotnet-aspnet-codegenerator
+```
+```
+dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] [-c|--configuration] [-tfm|--target-framework] [-b|--build-base-path] [--no-build] 
+dotnet aspnet-codegenerator [-h|--help]
+```
+
+add controller
+```
+dotnet aspnet-codegenerator controller --dataContext ApplicationDbContext -outDir Controllers --controllerName CONTROLLER_NAME --project PROJECT_NAME.csproj
+```
